@@ -3,7 +3,7 @@ import compression from 'vite-plugin-compression'
 
 export default defineConfig({
   root: '.',
-  base: '/web-abu/', // Ajustado para que las rutas funcionen en tu repositorio de GitHub Pages
+  base: '/jpproducciones/', // GitHub Pages: https://jpproducciones.github.io/jpproducciones/
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
