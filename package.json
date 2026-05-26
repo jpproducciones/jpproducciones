@@ -1,0 +1,29 @@
+{
+  "name": "jp-producciones-photography",
+  "version": "2.0.0",
+  "description": "Sitio web profesional de fotografía de bodas — JP Producciones",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "three": "^0.165.0",
+    "swiper": "^11.1.4",
+    "lenis": "^1.1.9"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-imagetools": "^6.2.9",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

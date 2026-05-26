@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Videos con Drone — JP Producciones</title>
+  <meta name="description" content="Videos aéreos con drone para XV años, bautismos y fiestas. JP Producciones — Fotografía & Video en Buenos Aires." />
+  <link rel="icon" href="./galeria/39.png" type="image/png" />
+  <meta name="theme-color" content="#0c0c0c" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./responsive-additions.css" />
+  <style>
+    .coming-soon-wrap {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem var(--gap, 2rem);
+      position: relative;
+    }
+    .coming-soon-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .coming-soon__kicker {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+    .coming-soon__title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .coming-soon__title em {
+      font-style: italic;
+      color: var(--text-2);
+    }
+    .coming-soon__sub {
+      font-size: 0.9rem;
+      color: var(--text-3);
+      max-width: 420px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+    .coming-soon__line {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 3rem;
+      opacity: 0.5;
+    }
+    .coming-soon__back {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .coming-soon__back:hover {
+      color: var(--text);
+      border-color: var(--text-2);
+    }
+  </style>
+</head>
+<body>
+
+<div class="noise" aria-hidden="true"></div>
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<!-- ── MOBILE NAV ── -->
+<nav class="mobile-nav" aria-label="Menú móvil">
+  <a href="index.html">Inicio</a>
+  <a href="index.html#sobre-nosotros">Sobre nosotros</a>
+  <a href="gallery.html">Galería</a>
+  <a href="videos.html">Videos</a>
+  <a href="index.html#precios">Precios</a>
+  <a href="https://wa.me/5491135625211" target="_blank" rel="noopener">Contacto</a>
+</nav>
+
+<!-- ── TOPBAR ── -->
+<header id="topbar" role="banner">
+  <a href="index.html" class="nav-logo">JP <em>Producciones</em></a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html#sobre-nosotros">Sobre nosotros</a></li>
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="gallery.html">Galería</a></li>
+    <li><a href="videos.html" style="color:var(--text)">Videos</a></li>
+    <li><a href="index.html#precios">Precios</a></li>
+    <li><a href="index.html#testimonios">Clientes</a></li>
+  </ul>
+  <div class="nav-right">
+    <button id="theme-toggle" class="theme-toggle" title="Cambiar tema" aria-label="Cambiar tema">☾</button>
+    <a href="https://wa.me/5491135625211" target="_blank" rel="noopener" class="nav-cta">Reservar sesión</a>
+    <button class="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="coming-soon-wrap">
+    <p class="coming-soon__kicker">JP Producciones · Cinematografía aérea</p>
+    <h1 class="coming-soon__title">
+      Próximamente<br><em>en el aire.</em>
+    </h1>
+    <div class="coming-soon__line"></div>
+    <p class="coming-soon__sub">
+      Estamos editando nuestros mejores videos con drone para mostrártelos acá. Volvé pronto.
+    </p>
+    <a href="index.html" class="coming-soon__back">← Volver al inicio</a>
+  </div>
+</main>
+
+<script src="./watermark-protection.js"></script>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

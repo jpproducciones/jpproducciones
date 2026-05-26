@@ -1,0 +1,344 @@
+/* ============================================================
+   responsive-additions.css — JP Producciones
+   Mobile / Tablet polish + image protection styles
+   Importar DESPUÉS de style.css en todos los HTML
+   ============================================================ */
+
+/* ── Protección de imágenes (global) ──────────────────────── */
+img, video, canvas {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none; /* iOS: deshabilita menú de presión larga */
+  -webkit-user-drag: none;
+}
+
+/* Escudo invisible sobre wrappers de imagen */
+.img-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: transparent;
+  pointer-events: none; /* deja pasar clics normales */
+}
+/* En items donde el click abre el lightbox, el escudo bloquea drag */
+.m-item .img-shield,
+.pf-item .img-shield,
+.insta-item .img-shield {
+  pointer-events: auto;
+  cursor: zoom-in;
+}
+
+/* ── Swiper: corregir zoom excesivo ──────────────────────── */
+.swiper-slide {
+  width: min(400px, 68vw) !important;
+  height: min(500px, 60vh) !important;
+}
+.swiper-slide-active {
+  transform: none !important; /* quita el scale(1.02) original */
+}
+
+@media (max-width: 768px) {
+  .swiper-slide {
+    width: min(320px, 78vw) !important;
+    height: min(400px, 56vh) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .swiper-slide {
+    width: min(280px, 82vw) !important;
+    height: min(360px, 52vh) !important;
+  }
+}
+
+/* ── Lightbox canvas ──────────────────────────────────────── */
+#lightbox canvas {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+  display: block;
+  border: none;
+}
+
+.lb-download-btn {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 4.5rem; /* junto al botón de cerrar */
+  padding: 0.55rem 1.3rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 100px;
+  color: rgba(255,255,255,0.8);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+.lb-download-btn:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
+}
+.lb-download-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.lb-loading-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255,255,255,0.45);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  pointer-events: none;
+}
+
+/* ── Touch devices: mostrar overlays sin hover ────────────── */
+@media (hover: none) and (pointer: coarse) {
+  /* Cursor personalizado deshabilitado en touch */
+  .cursor-dot,
+  .cursor-ring { display: none !important; }
+  body   { cursor: auto; }
+  button { cursor: pointer; }
+  a      { cursor: pointer; }
+
+  /* Overlays siempre visibles */
+  .pf-item__overlay { opacity: 1; }
+  .m-item__info     { opacity: 1; }
+  .insta-item__icon { opacity: 1; }
+
+  /* Targets táctiles mínimos 44px */
+  .faq-question  { min-height: 52px; padding: 1.3rem 0; }
+  .filter-btn    { min-height: 44px; }
+  .slide-btn     { width: 52px; height: 52px; }
+  .theme-toggle  { width: 48px; height: 48px; }
+  .lb-close      { width: 52px; height: 52px; }
+  .hamburger     { padding: 8px; }
+
+  /* Videos drone: tap-to-play sin cursor custom */
+  .drone-item__player { cursor: pointer; }
+}
+
+/* ── 900px: tablets horizontales ─────────────────────────── */
+@media (max-width: 900px) {
+  /* Nav */
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+}
+
+/* ── 768px: tablets verticales ───────────────────────────── */
+@media (max-width: 768px) {
+  /* Sección padding */
+  .section {
+    padding-left:  clamp(1.25rem, 4vw, 2.5rem);
+    padding-right: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  /* Hero */
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 340px;
+  }
+  .btn-primary,
+  .btn-ghost { justify-content: center; }
+  .hero__scroll { display: none; }
+
+  /* About badge */
+  .about-img-badge { right: 0.5rem; bottom: 1rem; }
+
+  /* Stats 2×2 sin bordes rotos */
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2)  { border-right: none; }
+  .stat-item:nth-child(3)  { border-bottom: 0; }
+  .stat-item:nth-child(4)  { border-right: none; border-bottom: 0; }
+  .stat-item { padding: 2rem 1rem; }
+
+  /* Services */
+  .service-row { padding: 1.8rem 0.5rem; gap: 1rem; }
+
+  /* Process: 2 cols */
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .process-steps::before { display: none; }
+
+  /* Testimonials: 1 col */
+  .testimonials-grid { grid-template-columns: 1fr; }
+
+  /* Pricing: 1 col centrado */
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+  .pricing-card.featured { order: -1; }
+
+  /* CTA Banner */
+  .cta-banner {
+    flex-direction: column;
+    text-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    gap: 2rem;
+  }
+  .cta-banner .btn-dark { align-self: center; }
+
+  /* Footer: 2 cols */
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Gallery filters */
+  .gallery-filters  { gap: 0.4rem; }
+  .filter-btn { padding: 0.45rem 1rem; font-size: 0.65rem; }
+
+  /* Carousel controls */
+  .carousel-controls {
+    padding: 1.5rem 1rem 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Masonry 2 cols */
+  .masonry-grid { columns: 2; }
+
+  /* Videos page */
+  .videos-hero { min-height: 28vh; padding: 0 1.5rem 2.5rem; }
+  .drone-grid { gap: 2.5rem; }
+}
+
+/* ── 600px: teléfonos grandes ────────────────────────────── */
+@media (max-width: 600px) {
+  /* About badge fijo en esquina */
+  .about-img-badge { right: 0.5rem; bottom: 0.5rem; }
+
+  /* Portfolio items stacked */
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .pf-item:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .pf-item:nth-child(1) { aspect-ratio: 16 / 9; }
+  .pf-item__overlay { opacity: 1; } /* visible sin hover */
+
+  /* Swiper slide */
+  .swiper-slide {
+    width: min(340px, 85vw) !important;
+    height: min(430px, 65vh) !important;
+  }
+
+  /* Awards */
+  .award-org { display: none; }
+
+  /* Instagram: 3 cols */
+  .insta-grid { grid-template-columns: repeat(3, 1fr); }
+  .insta-item__icon { opacity: 0.7; }
+
+  /* Videos drone: 1 col siempre */
+  .drone-grid { grid-template-columns: 1fr !important; }
+  .drone-item--featured { grid-column: auto !important; }
+  .drone-item__title { font-size: 1rem; }
+  .drone-item__meta { display: none; }
+
+  /* Lightbox botón descarga */
+  .lb-download-btn {
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.6rem;
+    padding: 0.45rem 1rem;
+  }
+  .lb-close {
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+/* ── 500px: teléfonos medianos ───────────────────────────── */
+@media (max-width: 500px) {
+  /* About: badge sin posición absoluta en pantallas muy chicas */
+  .about-img-badge {
+    position: static;
+    margin-top: 1rem;
+    display: inline-block;
+    right: auto;
+    bottom: auto;
+    border-radius: 4px;
+  }
+  .about-img-wrap { aspect-ratio: 4/3; }
+
+  /* Stats más compactos */
+  .stat-item { padding: 1.5rem 0.75rem; }
+  .stat-number { font-size: clamp(2rem, 8vw, 2.8rem); }
+
+  /* Services: 2 col */
+  .service-row { grid-template-columns: 1fr auto; }
+  .service-row__info { display: none; }
+  .service-row__name { font-size: clamp(1.1rem, 5vw, 1.6rem); }
+
+  /* Process: 1 col */
+  .process-steps { grid-template-columns: 1fr; gap: 2rem; }
+
+  /* Testimonials */
+  .testimonial-card { padding: 1.5rem; }
+
+  /* Pricing */
+  .pricing-card { padding: 2rem 1.25rem; }
+
+  /* Footer: 1 col */
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  /* Masonry: 1 col */
+  .masonry-grid { columns: 1; }
+
+  /* CTA Banner compacto */
+  .cta-banner { padding: 2.5rem 1.5rem; }
+}
+
+/* ── 380px: teléfonos pequeños ───────────────────────────── */
+@media (max-width: 380px) {
+  .nav-logo   { font-size: 1rem; }
+  .hero__kicker { font-size: 0.58rem; letter-spacing: 0.14em; }
+  .section-label { font-size: 0.58rem; letter-spacing: 0.18em; }
+
+  .btn-primary,
+  .btn-ghost { font-size: 0.8rem; padding: 0.9rem 1.6rem; }
+
+  .pricing-amount { font-size: 2.3rem; }
+  .about-quote { font-size: 1.05rem; }
+
+  .section { padding-left: 1rem; padding-right: 1rem; }
+
+  /* Stats: igual, solo más chico */
+  .stat-item { padding: 1.2rem 0.5rem; }
+}
+
+/* ── Landscape + teléfonos (vh limitado) ─────────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { min-height: 100svh; }
+  .hero__title { font-size: clamp(2rem, 8vw, 5rem); }
+  .mobile-nav { justify-content: center; gap: 1.5rem; }
+  .mobile-nav a { font-size: clamp(1.4rem, 5vw, 2.5rem); }
+}
+
+/* ── Mejoras accesibilidad: reduce-motion ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .cursor-dot,
+  .cursor-ring { display: none !important; }
+}
