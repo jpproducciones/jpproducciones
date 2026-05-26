@@ -3,15 +3,15 @@ import compression from 'vite-plugin-compression'
 
 export default defineConfig({
   root: '.',
-  base: './',
+  base: '/web-abu/', // Ajustado para que las rutas funcionen en tu repositorio de GitHub Pages
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     minify: 'terser',
     rollupOptions: {
       input: {
-        main: './index.html',
-        gallery: './gallery.html'
+        main: 'index.html',
+        gallery: 'gallery.html'
       },
       output: {
         manualChunks: {
